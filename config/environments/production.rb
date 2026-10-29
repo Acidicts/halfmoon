@@ -70,9 +70,10 @@ Rails.application.configure do
   # Enable DNS rebinding protection and other `Host` header attacks. Leaving this
   # empty lets any Host header through, which in turn lets a spoofed Host
   # poison any absolute URL the app generates or redirects to.
-  app_host = Halfmoon.app_host(default: "granitemd.com")
+  app_host = Halfmoon.app_host(default: "halfmoon.bing-bong.uk")
   extra_hosts = Halfmoon.hosts_from_env("ALLOWED_HOSTS", "ALLOWED_HOST")
-  config.hosts = ([ app_host ] + extra_hosts).uniq.flat_map { |host| [ host, ".#{host}" ] }
+  allowed = ([ app_host ] + extra_hosts).compact.map(&:to_s).map(&:strip).reject(&:empty?).uniq
+  config.hosts = allowed.flat_map { |host| [ host, ".#{host}" ] }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

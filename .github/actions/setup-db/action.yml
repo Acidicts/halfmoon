@@ -7,7 +7,7 @@ runs:
     - name: Prepare test database
       shell: bash
       env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/granite_test
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/halfmoon_test
         REDIS_URL: redis://localhost:6379
         RAILS_ENV: test
         # Throwaway keys so CI never depends on a .env file (which is

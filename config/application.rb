@@ -2,6 +2,7 @@
 
 require_relative "boot"
 
+require "uri"
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -21,6 +22,49 @@ require "rails/test_unit/railtie"
 Bundler.require(*Rails.groups)
 
 module Halfmoon
+  # Host of the public origin (e.g. "halfmoon.bing-bong.uk" from APP_URL).
+  # Used by config/environments/production.rb for Host Authorization.
+  # Falls back to `default` so `assets:precompile` (which boots the app
+  # without real env vars) never raises NoMethodError / KeyError.
+  def self.app_host(default: nil)
+    host = ENV["APP_HOST"].to_s.strip
+    if host.empty?
+      url = ENV["APP_URL"].to_s.strip
+      unless url.empty?
+        begin
+          parsed = URI.parse(url.include?("://") ? url : "https://#{url}")
+          host = parsed.host.to_s.strip
+        rescue URI::InvalidURIError
+          host = ""
+        end
+      end
+    end
+    host = host.downcase
+    # Strip port if someone set "example.com:3000".
+    host = host.split(":").first.to_s.strip
+    host.empty? ? default : host
+  end
+
+  # Extra host allowlist entries from env vars (comma/space/semicolon
+  # separated, URLs tolerated: "https://foo.com, bar.com").
+  def self.hosts_from_env(*keys)
+    keys.flat_map { |key| ENV[key].to_s.split(/[\s,;]+/) }
+        .map(&:strip)
+        .reject(&:empty?)
+        .map { |value|
+          candidate = value.include?("://") ? value : "https://#{value}"
+          begin
+            parsed_host = URI.parse(candidate).host.to_s.strip.downcase
+            parsed_host.empty? ? value : parsed_host
+          rescue URI::InvalidURIError
+            value
+          end
+        }
+        .map { |host| host.downcase.split(":").first.to_s.strip }
+        .reject(&:empty?)
+        .uniq
+  end
+
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.1
