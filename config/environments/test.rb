@@ -41,4 +41,16 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Throwaway encryption keys so `RAILS_ENV=test` boots without a `.env` file.
+  # These decrypt nothing real -- the test database is rebuilt from schema on
+  # every run. Must match the values in `.github/workflows/ci.yml` and
+  # `.github/actions/setup-db/action.yml` so CI and local runs behave the same.
+  # Real keys come from ENV (see `config/application.rb`) and take precedence.
+  config.active_record.encryption.primary_key ||=
+    "e3thjpxBEMSXvniHfQnAafG+fKhQKv3nu/5Mdh3iAyo="
+  config.active_record.encryption.deterministic_key ||=
+    "z1N3uzTWwPeRhv8EvYtSavEmLD/07uhLw4h4iYui6Po="
+  config.active_record.encryption.key_derivation_salt ||=
+    "jcp77SZdceuWLZ08+CRQVZ0ro6cNnxnOf9jz7OYO4Mk="
 end
