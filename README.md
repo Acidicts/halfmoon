@@ -83,7 +83,7 @@ docker run --rm \
   -e DB_PASSWORD=your-password \
   -e REDIS_URL=redis://your-redis-host:6379/0 \
   -p 3000:3000 \
-  ghcr.io/acidicts/granitemd:latest
+  ghcr.io/acidicts/halfmoon:latest
 ```
 
 
