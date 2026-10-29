@@ -125,8 +125,8 @@ jobs:
       - uses: ./.github/actions/setup-db
       - name: Run RSpec
         env:
-          # Must match the database setup-db creates/loads (granite_test).
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/granite_test
+          # Must match the database setup-db creates/loads (halfmoon_test).
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/halfmoon_test
           REDIS_URL: redis://localhost:6379
           RAILS_ENV: test
           # Throwaway keys so CI never depends on a .env file (which is
