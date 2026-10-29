@@ -16,3 +16,13 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym "RESTful"
 # end
+
+# OmniAuth capitalizes the "A": the gem namespace is `OmniAuth`, but without
+# this rule ActiveSupport (and therefore Zeitwerk, which builds constants from
+# file paths) inflects `lib/omniauth` as `Omniauth`. That mismatch makes eager
+# loading (`config.eager_load = true`, i.e. CI) crash with
+# `uninitialized constant Omniauth::Strategies::Hackclub`, so every spec file
+# fails to boot. This one line makes `omniauth` -> `OmniAuth` everywhere.
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.acronym "OmniAuth"
+end
