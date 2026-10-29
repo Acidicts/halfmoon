@@ -1,0 +1,25 @@
+# .rubocop.yml
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
+
+Layout/IndentationWidth:
+  Enabled: true
+
+Layout/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: normal
+
+Layout/FirstArrayElementIndentation:
+  Enabled: true
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+
+Layout/ArgumentAlignment:
+  Enabled: true
+
+Layout/EndAlignment:
+  Enabled: true

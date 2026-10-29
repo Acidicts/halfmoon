@@ -1,0 +1,55 @@
+@import url("../../shared.css");
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.sign-in-page {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.sign-in-form {
+    position: relative;
+    z-index: 1;
+    align-self: center;
+    box-sizing: border-box;
+    width: min(100% - 2rem, 26rem);
+    padding: 3rem 2.5rem;
+    background-color: var(--dark-highlight);
+    border: 2px solid var(--dark);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+}
+
+.sign-in-form h1 {
+    margin: 0 0 1.5rem;
+    font-size: 2rem;
+    color: var(--moon);
+}
+
+.sign-in-form .button_to {
+    margin: 0;
+}
+
+.sign-in-form button {
+    padding: .75rem 1.25rem;
+    font-size: 1rem;
+    font-family: "Matcha Style";
+    color: var(--moon);
+    background-color: var(--hackclub-red);
+    border: 2px solid var(--moon-outline);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.sign-in-form button:hover {
+    background-color: var(--dark-highlight);
+}

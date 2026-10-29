@@ -1,10 +1,55 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+@import url("../shared.css");
+
+.flash {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: grid;
+    gap: .75rem;
+    width: min(100% - 2rem, 36rem);
+}
+
+.flash__alert {
+    --alert-accent: #7db9ff;
+
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .85rem 1.25rem;
+    background-color: var(--dark-highlight);
+    border: 2px solid var(--alert-accent);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .45);
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    font-size: .95rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.flash__alert::before {
+    content: "";
+    flex: 0 0 auto;
+    width: .6rem;
+    height: .6rem;
+    border-radius: 50%;
+    background-color: var(--alert-accent);
+}
+
+.flash__alert--info {
+    --alert-accent: #7db9ff;
+}
+
+.flash__alert--success {
+    --alert-accent: #5ee08a;
+}
+
+.flash__alert--warn {
+    --alert-accent: var(--moon);
+}
+
+.flash__alert--error {
+    --alert-accent: var(--hackclub-red);
+}

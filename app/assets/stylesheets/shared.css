@@ -1,0 +1,114 @@
+:root {
+    --moon            : #f5e8ca;
+    --moon-outline    : #e6d3a7;
+    --dark            : #20253f;
+    --dark-highlight  : #474e75;
+
+    --paragraph-text: #aab0d0;
+    --hackclub-red: #ec3750;
+}
+
+@font-face {
+    font-family: "Matcha Style";
+    src: url("MatchaStyle.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Starborn";
+    src: url("Starborn.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.matcha {
+    font-family: "Matcha Style";
+}
+
+.starborn {
+    font-family: "Starborn", "Matcha Style";
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.starry-sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(#050816, #1b213c 50%, var(--dark));
+}
+
+.star-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background: transparent;
+    pointer-events: none;
+    animation: twinkle ease-in-out infinite alternate;
+}
+
+.star-layer.small {
+    width: 1px;
+    height: 1px;
+    animation-duration: 5s;
+}
+
+.star-layer.medium {
+    width: 1.5px;
+    height: 1.5px;
+    animation-duration: 3.5s;
+    animation-delay: -1.5s;
+}
+
+.star-layer.large {
+    width: 2.5px;
+    height: 2.5px;
+    animation-duration: 2.5s;
+    animation-delay: -0.8s;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: .35;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .star-layer {
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .starry-sky::before,
+    .starry-sky::after {
+        animation: none;
+    }
+}

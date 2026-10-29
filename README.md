@@ -14,3 +14,4 @@ Half-Moon is Draft YSWS where:
 
 ### Credits
 - Font - Matcha Style - https://www.dafont.com/matcha-style.font
+- Font - Starborn - https://www.dafont.com/starborn.font

@@ -1,2 +1,134 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= stylesheet_link_tag "pages/home/index" %>
+
+<div class="banner">
+    <div class="starry-sky" id="sky">
+        <div class="star-layer small"></div>
+        <div class="star-layer medium"></div>
+        <div class="star-layer large"></div>
+    </div>
+    <div class="content">
+        <h1 class="title starborn">
+            <span class="halfmoon-banner-title-half__first">Half</span>
+            <span class="halfmoon-banner-title-half__last">M<span class="halfmoon-banner-title-half__last-o__first">o</span><span class="halfmoon-banner-title-half__last-o__last">o</span>n</span>
+        </h1>
+    </div>
+</div>
+
+<div class="description matcha">
+  <br>
+  <div class="steps">
+      <div class="step">
+        <div class="moon-icon moon-empty"></div>
+        Make a Project
+        <p>Make a project with a language you and your friend know</p>
+      </div>
+      <div class="step">
+        <div class="moon-icon moon-half"></div>
+        Swap the Project
+        <p>Ship and swap projects with your friend and work on theirs</p>
+      </div>
+      <div class="step">
+        <div class="moon-icon moon-full"></div>
+        Rebuild the Moon
+        <p>Ship your project to rebuild the moon</p>
+      </div>
+  </div>
+</div>
+
+<div class="rsvp-here matcha">
+  <div class="moon-icon moon-full"></div>
+  <h2>Ready to rebuild the moon?</h2>
+  <p>Grab a buddy, make something, and RSVP to support this ysws.</p>
+  <%= button_to 'RSVP here', rsvp_path, method: :post, class: 'rsvp-here__cta' %>
+</div>
+
+<div class="questions matcha">
+  <details class="question-div" name="faq">
+    <summary class="question">Who can join?</summary>
+    <div class="answer-wrap">
+      <p class="answer">
+        Anyone who's 13-18! It's a Hack Club You Ship, We Ship, so the usual YSWS eligibility rules apply. No experience needed: if you can open a code editor, you're qualified. If you're 19 or older, anyone you may know who fits the age range.
+      </p>
+    </div>
+  </details>
+  <details class="question-div" name="faq">
+    <summary class="question">Can I use AI?</summary>
+    <div class="answer-wrap">
+      <p class="answer">
+        Only 30% can be AI and you must be able to explain all major parts of your project.
+      </p>
+    </div>
+  </details>
+  <details class="question-div" name="faq">
+    <summary class="question">What if I don't have a friend to do it with?</summary>
+    <div class="answer-wrap">
+      <p class="answer">
+        You can find someone here on hackclub to do it with.
+      </p>
+    </div>
+  </details>
+  <details class="question-div" name="faq">
+    <summary class="question">What if my friend quits midway through?</summary>
+    <div class="answer-wrap">
+      <p class="answer">
+        You can find a new person or get given a random project from us.
+      </p>
+    </div>
+  </details>
+  <details class="question-div" name="faq">
+    <summary class="question">Does the project have to be open source</summary>
+    <div class="answer-wrap">
+      <p class="answer">
+        Yes as this is a requirment for hackclub YSWS.
+      </p>
+    </div>
+  </details>
+</div>
+
+<script>
+  const sky = document.getElementById('sky');
+
+  // Stars per 100,000 px² of screen area for each layer
+  const DENSITY = { small: 60, medium: 18, large: 5 };
+
+  function randomStars(count, width, height) {
+    const shadows = [];
+    for (let i = 0; i < count; i++) {
+      const x = Math.floor(Math.random() * width);
+      const y = Math.floor(Math.random() * height);
+      const alpha = (0.5 + Math.random() * 0.5).toFixed(2);
+      // Slight colour variation: mostly white, some bluish, some warm
+      const tint = Math.random();
+      const rgb = tint < 0.7 ? '255,255,255' : tint < 0.85 ? '190,210,255' : '255,235,200';
+      shadows.push(`${x}px ${y}px rgba(${rgb},${alpha})`);
+    }
+    return shadows.join(',');
+  }
+
+  function scatter(container) {
+    if (!container) return;
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    if (!w || !h) return;
+    const area = (w * h) / 100000;
+
+    for (const [name, density] of Object.entries(DENSITY)) {
+      const layer = container.querySelector('.star-layer.' + name);
+      if (layer) layer.style.boxShadow = randomStars(Math.round(area * density), w, h);
+    }
+  }
+
+  function render() {
+    scatter(sky);
+    scatter(document.querySelector('#starmap .starmap-sky'));
+  }
+
+  render();
+
+  // Re-scatter when the window size changes (debounced)
+  let timer;
+  window.addEventListener('resize', () => {
+    clearTimeout(timer);
+    timer = setTimeout(render, 150);
+  });
+</script>

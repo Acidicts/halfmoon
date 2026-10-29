@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -18,7 +18,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
 
   # Cache assets for far-future expiry since they are all digest stamped.
-  config.public_file_server.headers = { 'cache-control' => "public, max-age=#{1.year.to_i}" }
+  config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -33,14 +33,14 @@ Rails.application.configure do
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT with the current request id as a default log tag.
-  config.log_tags = [:request_id]
+  config.log_tags = [ :request_id ]
   config.logger   = ActiveSupport::TaggedLogging.logger($stdout)
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!).
-  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
+  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Prevent health checks from clogging up the logs.
-  config.silence_healthcheck_path = '/up'
+  config.silence_healthcheck_path = "/up"
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
@@ -50,9 +50,9 @@ Rails.application.configure do
   # holding the rate-limit counters. Pass a CA bundle via REDIS_URL/REDIS_SSL_* if
   # the cache is reached over TLS.
   config.cache_store = :redis_cache_store, {
-    url: ENV.fetch('REDIS_URL'),
+    url: ENV.fetch("REDIS_URL"),
     pool: {
-      size: ENV.fetch('RAILS_MAX_THREADS', 5).to_i,
+      size: ENV.fetch("RAILS_MAX_THREADS", 5).to_i,
       timeout: 5
     }
   }
@@ -65,14 +65,14 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Only use :id for inspections in production.
-  config.active_record.attributes_for_inspect = [:id]
+  config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks. Leaving this
   # empty lets any Host header through, which in turn lets a spoofed Host
   # poison any absolute URL the app generates or redirects to.
-  app_host = Halfmoon.app_host(default: 'granitemd.com')
-  extra_hosts = Halfmoon.hosts_from_env('ALLOWED_HOSTS', 'ALLOWED_HOST')
-  config.hosts = ([app_host] + extra_hosts).uniq.flat_map { |host| [host, ".#{host}"] }
+  app_host = Halfmoon.app_host(default: "granitemd.com")
+  extra_hosts = Halfmoon.hosts_from_env("ALLOWED_HOSTS", "ALLOWED_HOST")
+  config.hosts = ([ app_host ] + extra_hosts).uniq.flat_map { |host| [ host, ".#{host}" ] }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

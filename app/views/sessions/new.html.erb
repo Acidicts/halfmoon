@@ -1,0 +1,63 @@
+<%= stylesheet_link_tag "pages/sessions/new" %>
+
+<div class="sign-in-page">
+    <div class="starry-sky" id="sky">
+        <div class="star-layer small"></div>
+        <div class="star-layer medium"></div>
+        <div class="star-layer large"></div>
+    </div>
+
+    <div class="sign-in-form">
+        <h1>Sign in</h1>
+
+        <%= button_to 'Sign in with Hack Club', '/auth/hackclub', method: :post %>
+    </div>
+</div>
+
+<script>
+  const sky = document.getElementById('sky');
+
+  // Stars per 100,000 px² of screen area for each layer
+  const DENSITY = { small: 60, medium: 18, large: 5 };
+
+  function randomStars(count, width, height) {
+    const shadows = [];
+    for (let i = 0; i < count; i++) {
+      const x = Math.floor(Math.random() * width);
+      const y = Math.floor(Math.random() * height);
+      const alpha = (0.5 + Math.random() * 0.5).toFixed(2);
+      // Slight colour variation: mostly white, some bluish, some warm
+      const tint = Math.random();
+      const rgb = tint < 0.7 ? '255,255,255' : tint < 0.85 ? '190,210,255' : '255,235,200';
+      shadows.push(`${x}px ${y}px rgba(${rgb},${alpha})`);
+    }
+    return shadows.join(',');
+  }
+
+  function scatter(container) {
+    if (!container) return;
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    if (!w || !h) return;
+    const area = (w * h) / 100000;
+
+    for (const [name, density] of Object.entries(DENSITY)) {
+      const layer = container.querySelector('.star-layer.' + name);
+      if (layer) layer.style.boxShadow = randomStars(Math.round(area * density), w, h);
+    }
+  }
+
+  function render() {
+    scatter(sky);
+    scatter(document.querySelector('#starmap .starmap-sky'));
+  }
+
+  render();
+
+  // Re-scatter when the window size changes (debounced)
+  let timer;
+  window.addEventListener('resize', () => {
+    clearTimeout(timer);
+    timer = setTimeout(render, 150);
+  });
+</script>

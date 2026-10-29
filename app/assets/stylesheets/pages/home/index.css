@@ -1,0 +1,304 @@
+@import url("../../shared.css");
+
+.banner {
+    position: relative;
+    width: 100%;
+    background: #141933;
+    height: 100vh;
+}
+
+.title {
+    position: relative;
+    margin: auto;
+    align-self: center;
+    text-align: center;
+
+    font-size: 6rem;
+}
+
+.halfmoon-banner-title-half__first {
+    color: var(--moon);
+    text-shadow: 0 0 20px var(--dark);
+}
+
+.halfmoon-banner-title-half__last {
+    color: var(--dark);
+    text-shadow: 0 0 20px var(--moon)
+}
+
+.halfmoon-banner-title-half__last-o__first {
+    position: relative;
+    color: transparent;
+    text-shadow: none;
+}
+
+.halfmoon-banner-title-half__last-o__first::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: .197em;
+    box-sizing: border-box;
+    width: .64em;
+    height: .32em;
+    background-color: var(--moon);
+    border: var(--moon-outline) 2px solid;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    transform: rotate(-105deg) translateX(1rem);
+}
+
+.halfmoon-banner-title-half__last-o__first::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: .197em;
+    box-sizing: border-box;
+    width: .64em;
+    height: .32em;
+    border: var(--dark-highlight) 4px dashed;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    transform: rotate(75deg) translateX(-1rem) translateY(-30px);
+}
+
+.description {
+    background-color: var(--dark);
+
+}
+
+.description .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.description .step {
+    padding: 3rem;
+    background-color: var(--dark);
+    border: 4px solid var(--dark-highlight);
+    margin: 1rem;
+    border-radius: 32px;
+    
+    color: var(--moon);
+}
+
+.description .step p {
+    font-size: 0.8rem;
+    color: var(--paragraph-text);
+}
+
+
+.moon-icon {
+    width: 2rem;
+    height: 2rem;
+    border: var(--moon-outline) 2px solid;
+    border-radius: 50%;
+    transform: rotate(-105deg);
+    margin-bottom: 1rem;
+}
+
+.moon-empty {
+    background:
+        radial-gradient(circle at 33% 35%, transparent 0 17%, var(--moon-outline) 17% 21%, transparent 22%),
+        radial-gradient(circle at 65% 56%, transparent 0 12%, var(--moon-outline) 12% 16%, transparent 17%),
+        radial-gradient(circle at 45% 71%, transparent 0 9%, var(--moon-outline) 9% 13%, transparent 14%),
+        transparent;
+}
+
+.moon-half {
+    background:
+        radial-gradient(circle at 33% 20%, var(--moon-outline) 0 15%, transparent 21%),
+        radial-gradient(circle at 63% 30%, var(--moon-outline) 0 11%, transparent 16%),
+        radial-gradient(circle at 45% 40%, var(--moon-outline) 0 8%, transparent 13%),
+        linear-gradient(var(--moon), 50%, transparent, 50%, transparent);
+}
+
+.moon-full {
+    background:
+        radial-gradient(circle at 33% 34%, var(--moon-outline) 0 21%, transparent 28%),
+        radial-gradient(circle at 64% 55%, var(--moon-outline) 0 15%, transparent 21%),
+        radial-gradient(circle at 44% 73%, var(--moon-outline) 0 11%, transparent 16%),
+        var(--moon);
+}
+
+.rsvp-here {
+    padding: 4rem 1rem;
+    background-color: var(--dark-highlight);
+    border-top: 4px solid var(--dark);
+    text-align: center;
+    color: var(--moon);
+}
+
+.rsvp-here .moon-icon {
+    margin: 0 auto 1.5rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.rsvp-here h2 {
+    margin: 0 0 .75rem;
+    font-size: 2.5rem;
+}
+
+.rsvp-here p {
+    margin: 0 0 2rem;
+    font-size: 1.1rem;
+    color: var(--paragraph-text);
+}
+
+.rsvp-here__cta {
+    display: inline-block;
+    padding: .9rem 2.75rem;
+    background-color: var(--hackclub-red);
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border: 2px solid var(--moon-outline);
+    border-radius: 999px;
+    transition: transform .15s ease, background-color .15s ease;
+}
+
+.rsvp-here__cta:hover {
+    background-color: #ff5268;
+    transform: translateY(-2px);
+}
+
+.rsvp-thanks {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    width: min(100% - 2rem, 30rem);
+    padding: 3rem 2.5rem;
+    background-color: var(--dark-highlight);
+    border: 2px solid var(--dark);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+    color: var(--moon);
+    font-family: system-ui, sans-serif;
+    text-align: center;
+}
+
+.rsvp-thanks .moon-icon {
+    margin: 0 auto 1.5rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.rsvp-thanks h1 {
+    margin: 0 0 .75rem;
+    font-size: 2.5rem;
+    color: var(--moon);
+}
+
+.rsvp-thanks p {
+    margin: 0 0 2rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--moon-outline);
+}
+
+.rsvp-thanks__cta {
+    display: inline-block;
+    padding: .9rem 2.75rem;
+    background-color: var(--hackclub-red);
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border: 2px solid var(--moon-outline);
+    border-radius: 999px;
+    transition: transform .15s ease, background-color .15s ease;
+}
+
+.rsvp-thanks__cta:hover {
+    background-color: #ff5268;
+    transform: translateY(-2px);
+}
+
+.rsvp-thanks__link {
+    display: inline-block;
+    margin-left: 1rem;
+    color: var(--moon);
+    font-size: .95rem;
+}
+
+.rsvp-thanks__link:hover {
+    text-decoration: underline;
+}
+
+.questions {
+    padding: 2.5rem 1rem;
+    background-color: var(--dark);
+    border-top: 4px solid var(--dark-highlight);
+    display: grid;
+    gap: 0;
+    justify-items: center;
+}
+
+.question-div {
+    box-sizing: border-box;
+    width: min(100% - 2rem, 36rem);
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--dark-highlight);
+    border-radius: 0;
+    color: var(--moon);
+}
+
+.question-div .question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin: 0;
+    padding: .85rem .25rem;
+    font-size: 1.05rem;
+    font-weight: normal;
+    color: var(--moon);
+    cursor: pointer;
+    list-style: none;
+}
+
+.question-div .question::-webkit-details-marker {
+    display: none;
+}
+
+.question-div .question::marker {
+    content: "";
+}
+
+.question-div .question::after {
+    content: "+";
+    flex-shrink: 0;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--paragraph-text);
+    transition: transform .2s ease;
+}
+
+.question-div[open] .question::after {
+    transform: rotate(45deg);
+}
+
+.question-div .answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .25s ease;
+}
+
+.question-div[open] .answer-wrap {
+    grid-template-rows: 1fr;
+}
+
+.question-div .answer-wrap .answer {
+    overflow: hidden;
+    margin: 0;
+    font-size: .92rem;
+    line-height: 1.6;
+    color: var(--paragraph-text);
+    font-family: system-ui;
+}
+
+.question-div[open] .answer-wrap .answer {
+    padding: 0 .25rem .9rem;
+}

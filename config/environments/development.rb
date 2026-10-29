@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -20,10 +20,10 @@ Rails.application.configure do
   # Caching Configs
   config.action_controller.perform_caching = true
   config.action_controller.enable_fragment_cache_logging = true
-  config.public_file_server.headers = { 'cache-control' => "public, max-age=#{2.days.to_i}" }
+  config.public_file_server.headers = { "cache-control" => "public, max-age=#{2.days.to_i}" }
 
   config.cache_store = :redis_cache_store, {
-    url: ENV.fetch('REDIS_URL', 'redis://localhost:6379/1')
+    url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1")
   }
 
   # Print deprecation notices to the Rails logger.
@@ -53,7 +53,7 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
 
-  config.hosts << '3000--main--halfmoon--acidicts.coder.bing-bong.uk'
+  config.hosts << "3000--main--halfmoon--acidicts.coder.bing-bong.uk"
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

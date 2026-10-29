@@ -23,6 +23,18 @@
   </head>
 
   <body>
+    <% if flash.any? %>
+      <div class="flash">
+        <% flash.each do |type, message| %>
+          <% next if message.blank? %>
+          <% kind = flash_alert_type(type) %>
+          <div class="flash__alert flash__alert--<%= kind %>" role="<%= kind == 'error' ? 'alert' : 'status' %>">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

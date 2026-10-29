@@ -1,0 +1,147 @@
+@import url("../../shared.css");
+
+.banner {
+    position: relative;
+    width: 100%;
+    background: #141933;
+    min-height: 100vh;
+    height: auto;
+}
+
+.rsvp-hero {
+    box-sizing: border-box;
+    width: min(100% - 2rem, 36rem);
+    padding: 3rem 2.5rem;
+    background-color: rgba(32, 37, 63, .85);
+    border: 4px solid var(--dark-highlight);
+    border-radius: 32px;
+    color: var(--moon);
+    text-align: center;
+}
+
+.rsvp-hero .moon-icon {
+    margin: 0 auto 1.5rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.rsvp-hero h1 {
+    margin: 0 0 .75rem;
+    font-size: 2.5rem;
+    line-height: 1.1;
+}
+
+.rsvp-hero__sub {
+    margin: 0 0 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--paragraph-text);
+}
+
+.rsvp-page__status {
+    margin: 0 0 1.25rem;
+    font-size: .95rem;
+    color: var(--paragraph-text);
+}
+
+.rsvp-page__status--done {
+    color: var(--moon);
+    font-size: 1.1rem;
+}
+
+.rsvp-page__cta {
+    display: inline-block;
+    padding: .9rem 2.75rem;
+    background-color: var(--hackclub-red);
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: inherit;
+    text-decoration: none;
+    border: 2px solid var(--moon-outline);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform .15s ease, background-color .15s ease;
+}
+
+.rsvp-page__cta:hover {
+    background-color: #ff5268;
+    transform: translateY(-2px);
+}
+
+.rsvp-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding: 3rem 1rem;
+    background-color: var(--dark);
+    border-top: 4px solid var(--dark-highlight);
+}
+
+.rsvp-info__step {
+    padding: 2rem;
+    margin: 1rem;
+    background-color: var(--dark);
+    border: 4px solid var(--dark-highlight);
+    border-radius: 32px;
+    color: var(--moon);
+    text-align: center;
+}
+
+.rsvp-info__step h2 {
+    margin: 0 0 .5rem;
+    font-size: 1.4rem;
+}
+
+.rsvp-info__step p {
+    margin: 0;
+    font-size: .95rem;
+    line-height: 1.5;
+    color: var(--paragraph-text);
+}
+
+.moon-icon {
+    width: 2rem;
+    height: 2rem;
+    border: var(--moon-outline) 2px solid;
+    border-radius: 50%;
+    transform: rotate(-105deg);
+    margin: 0 auto 1rem;
+}
+
+.moon-empty {
+    background:
+        radial-gradient(circle at 33% 35%, transparent 0 17%, var(--moon-outline) 17% 21%, transparent 22%),
+        radial-gradient(circle at 65% 56%, transparent 0 12%, var(--moon-outline) 12% 16%, transparent 17%),
+        radial-gradient(circle at 45% 71%, transparent 0 9%, var(--moon-outline) 9% 13%, transparent 14%),
+        transparent;
+}
+
+.moon-half {
+    background:
+        radial-gradient(circle at 33% 20%, var(--moon-outline) 0 15%, transparent 21%),
+        radial-gradient(circle at 63% 30%, var(--moon-outline) 0 11%, transparent 16%),
+        radial-gradient(circle at 45% 40%, var(--moon-outline) 0 8%, transparent 13%),
+        linear-gradient(var(--moon), 50%, transparent, 50%, transparent);
+}
+
+.moon-full {
+    background:
+        radial-gradient(circle at 33% 34%, var(--moon-outline) 0 21%, transparent 28%),
+        radial-gradient(circle at 64% 55%, var(--moon-outline) 0 15%, transparent 21%),
+        radial-gradient(circle at 44% 73%, var(--moon-outline) 0 11%, transparent 16%),
+        var(--moon);
+}
+
+@media (max-width: 700px) {
+    .rsvp-info {
+        grid-template-columns: 1fr;
+    }
+
+    .rsvp-hero {
+        padding: 2rem 1.5rem;
+    }
+
+    .rsvp-hero h1 {
+        font-size: 1.8rem;
+    }
+}
