@@ -19,7 +19,10 @@
 #  index_users_on_provider_and_uid  (provider,uid) UNIQUE
 #
 class User < ApplicationRecord
-  has_many :rsvps, dependent: :destroy
+  has_one :rsvp, dependent: :destroy
+  encrypts :email, downcase: true
+  encrypts :uid, deterministic: true
+  encrypts :name
 
   validates :provider, :uid, presence: true
 end
