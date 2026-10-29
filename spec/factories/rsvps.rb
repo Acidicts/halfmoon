@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :rsvp do
-    user { nil }
+    user
   end
 end
