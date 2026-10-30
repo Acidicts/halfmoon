@@ -98,9 +98,6 @@
 
 .moon-empty {
     background:
-        radial-gradient(circle at 33% 35%, transparent 0 17%, var(--moon-outline) 17% 21%, transparent 22%),
-        radial-gradient(circle at 65% 56%, transparent 0 12%, var(--moon-outline) 12% 16%, transparent 17%),
-        radial-gradient(circle at 45% 71%, transparent 0 9%, var(--moon-outline) 9% 13%, transparent 14%),
         transparent;
 }
 

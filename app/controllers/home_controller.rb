@@ -14,6 +14,7 @@ class HomeController < ApplicationController
 
   def rsvps_count
     @rsvps = Rsvp.count
+    render "home/rsvps"
   end
 
   def rsvp_thanks; end
