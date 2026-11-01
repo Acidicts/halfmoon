@@ -2,7 +2,8 @@
 
 Orpheus and Heidi after stardance have journeyed on a rocket to a far off moon but to find. Oh No, it is missing the other half. They need to complete the moon to make the sky whole once more. And need your help!
 
-Built on Ruby 4.0.7
+Built on Ruby 4.0.7 Rails 8.1.4
+---
 Half-Moon is Draft YSWS where:
 
 1. You find a buddy to partner with
