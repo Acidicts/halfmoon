@@ -7,14 +7,18 @@ class SlackBotService
     user ||= opts[:user]
     raw = slack_id.presence || user
     resolved_slack_id = normalize_slack_id(raw)
-    new(token: token || @token,
-        default_channel_id: default_channel_id || @default_channel_id)
+    resolved_token = token.presence || @token.presence || ENV["SLACK_OAUTH_TOKEN"]
+    resolved_channel = default_channel_id.presence || @default_channel_id.presence || ENV["SLACK_CHANNEL_ID"]
+    new(token: resolved_token,
+        default_channel_id: resolved_channel)
       .add_to_channel(slack_id: resolved_slack_id, channel_id: channel_id)
   end
 
   def self.in_channel?(slack_id, channel_id = nil, token: nil, default_channel_id: nil)
-    new(token: token || @token,
-        default_channel_id: default_channel_id || @default_channel_id)
+    resolved_token = token.presence || @token.presence || ENV["SLACK_OAUTH_TOKEN"]
+    resolved_channel = default_channel_id.presence || @default_channel_id.presence || ENV["SLACK_CHANNEL_ID"]
+    new(token: resolved_token,
+        default_channel_id: resolved_channel)
       .in_channel?(slack_id, channel_id)
   end
 
