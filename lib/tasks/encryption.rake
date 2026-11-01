@@ -27,7 +27,7 @@ namespace :encryption do
     fixed = 0
     failures = []
 
-    models = [User].compact
+    models = [ User ].compact
 
     ActiveRecord::Base.descendants.each do |model|
       next if model == User
