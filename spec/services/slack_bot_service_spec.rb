@@ -24,8 +24,15 @@ RSpec.describe SlackBotService do
     allow(ENV).to receive(:[]).with("SLACK_CHANNEL_ID").and_return(nil)
   end
 
+  def with_slack_env(token: "xoxb-test", channel: "C123")
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with("SLACK_OAUTH_TOKEN").and_return(token)
+    allow(ENV).to receive(:[]).with("SLACK_CHANNEL_ID").and_return(channel)
+  end
+
   describe ".add_to_channel" do
     it "invites via the API and returns true" do
+      with_slack_env
       allow(Slack::Web::Client).to receive(:new).and_return(fake_client)
       allow(fake_client).to receive(:conversations_members).and_return(members_page(%w[U1]))
       allow(fake_client).to receive(:conversations_invite).and_return({ "ok" => true })
@@ -117,6 +124,7 @@ RSpec.describe SlackBotService do
 
   describe ".in_channel?" do
     it "delegates to an instance and returns the result" do
+      with_slack_env
       allow(Slack::Web::Client).to receive(:new).and_return(fake_client)
       allow(fake_client).to receive(:conversations_members).and_return(members_page(%w[U456]))
 

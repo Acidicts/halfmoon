@@ -3,15 +3,19 @@
 class SlackBotService
   PAGE_LIMIT = 1000
 
-  def self.add_to_channel(user = nil, slack_id: nil, channel_id: nil, **opts)
+  def self.add_to_channel(user = nil, slack_id: nil, channel_id: nil, token: nil, default_channel_id: nil, **opts)
     user ||= opts[:user]
     raw = slack_id.presence || user
     resolved_slack_id = normalize_slack_id(raw)
-    new.add_to_channel(slack_id: resolved_slack_id, channel_id: channel_id)
+    new(token: token || @token,
+        default_channel_id: default_channel_id || @default_channel_id)
+      .add_to_channel(slack_id: resolved_slack_id, channel_id: channel_id)
   end
 
-  def self.in_channel?(slack_id, channel_id = nil)
-    new.in_channel?(slack_id, channel_id)
+  def self.in_channel?(slack_id, channel_id = nil, token: nil, default_channel_id: nil)
+    new(token: token || @token,
+        default_channel_id: default_channel_id || @default_channel_id)
+      .in_channel?(slack_id, channel_id)
   end
 
   def self.normalize_slack_id(value)
