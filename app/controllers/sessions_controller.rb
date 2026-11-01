@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  include SlackInvitations
+
   # The login button POSTs to /auth/hackclub (OmniAuth request phase, verified
   # against the Rails CSRF token); the IdP redirects back to #create.
   def new; end
@@ -32,6 +34,7 @@ class SessionsController < ApplicationController
        pending_action["method"] == "POST" &&
        pending_action["path"] == rsvp_path
       Rsvp.find_or_create_by(user: user)
+      invite_to_slack(user)
       redirect_to rsvp_thanks_path, notice: "Signed in as #{user.name}"
       return
     end

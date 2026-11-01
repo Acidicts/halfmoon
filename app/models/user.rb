@@ -22,7 +22,7 @@ class User < ApplicationRecord
   has_one :rsvp, dependent: :destroy
   encrypts :email, downcase: true
   encrypts :uid, deterministic: true
-  encrypts :name
+  encrypts :name, support_unencrypted_data: true
 
   validates :provider, :uid, presence: true
 end

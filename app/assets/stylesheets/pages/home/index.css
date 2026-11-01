@@ -1,5 +1,11 @@
 @import url("../../shared.css");
 
+:root {
+    --rsvp            : #f2c96b;
+    --rsvp-hover      : #f7d98f;
+    --rsvp-text       : #20253f;
+}
+
 .banner {
     position: relative;
     width: 100%;
@@ -143,15 +149,13 @@
 }
 
 .rsvp-here__cta {
-    display: inline-block;
-    padding: .9rem 2.75rem;
-    background-color: var(--hackclub-red);
-    color: #fff;
-    font-size: 1.1rem;
-    text-decoration: none;
+    background: var(--rsvp);
+    color: var(--rsvp-text);
     border: 2px solid var(--moon-outline);
     border-radius: 999px;
-    transition: transform .15s ease, background-color .15s ease;
+    padding: 0.75em 2em;
+    font-weight: 600;
+    transition: background 0.6s, box-shadow 0.2s;
 }
 
 .rsvp-here__cta:hover {
@@ -196,13 +200,13 @@
 .rsvp-thanks__cta {
     display: inline-block;
     padding: .9rem 2.75rem;
-    background-color: var(--hackclub-red);
-    color: #fff;
+    background-color: var(--rsvp);
+    color: var(--rsvp-text);
     font-size: 1.1rem;
     text-decoration: none;
     border: 2px solid var(--moon-outline);
     border-radius: 999px;
-    transition: transform .15s ease, background-color .15s ease;
+    transition: transform .15s ease, background-color .6s ease;
 }
 
 .rsvp-thanks__cta:hover {

@@ -19,6 +19,8 @@ gem "image_processing", "~> 1.2"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
 
+gem "slack-ruby-client", "~> 2.5"
+
 group :development, :test do
   gem "brakeman", ">= 8.0.6", require: false
   gem "bundler-audit", require: false

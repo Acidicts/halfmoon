@@ -1,5 +1,11 @@
 @import url("../../shared.css");
 
+:root {
+    --rsvp            : #f2c96b;
+    --rsvp-hover      : #f7d98f;
+    --rsvp-text       : #20253f;
+}
+
 .banner {
     position: relative;
     width: 100%;
@@ -52,8 +58,8 @@
 .rsvp-page__cta {
     display: inline-block;
     padding: .9rem 2.75rem;
-    background-color: var(--hackclub-red);
-    color: #fff;
+    background-color: var(--rsvp);
+    color: var(--rsvp-text);
     font-size: 1.1rem;
     font-family: inherit;
     text-decoration: none;

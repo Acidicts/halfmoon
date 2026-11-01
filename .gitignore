@@ -7,8 +7,10 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore all environment files.
+# Ignore all environment files. Keep the template only; anything else here is a
+# likely secret (`.env.local`, `.env.staging`, `.env.production.local`, ...).
 /.env*
+!/.env.example
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -30,9 +32,14 @@
 
 /public/assets
 
+# Ignore test coverage output.
+/coverage
+
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
-# Ignore SimpleCov coverage output.
-/coverage
+*.zip
 
+node_modules
+
+package-lock.json

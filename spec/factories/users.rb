@@ -23,5 +23,6 @@ FactoryBot.define do
     provider { 'hackclub' }
     sequence(:uid) { |n| "user-#{n}" }
     name { 'Test Hacker' }
+    sequence(:slack_id) { |n| "U#{n.to_s.rjust(8, '0')}" }
   end
 end

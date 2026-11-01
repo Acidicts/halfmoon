@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "pages/home/rsvp" %>
+<%= stylesheet_link_tag "shared" %>
 
 <div class="banner">
     <div class="starry-sky" id="sky">
@@ -9,7 +10,7 @@
     <div class="content matcha">
         <div class="rsvp-hero">
             <div class="moon-icon moon-full"></div>
-            <h1>Help us rebuild the moon</h1>
+            <h1 class="starborn">Help us rebuild the moon</h1>
             <p class="rsvp-hero__sub">
                 RSVP now so we can make the ysws quicker
             </p>
@@ -18,14 +19,14 @@
                 <p class="rsvp-page__status rsvp-page__status--done">
                     Thanks for your support! See you on the moon.
                 </p>
-                <%= link_to 'View confirmation', rsvp_thanks_path, class: 'rsvp-page__cta rsvp-page__cta--link' %>
+                <%= link_to 'View confirmation', rsvp_thanks_path, class: 'rsvp-page__cta rsvp-page__cta--link matcha' %>
             <% else %>
                 <% if current_user %>
                     <p class="rsvp-page__status">Signed in — you're one click away.</p>
                 <% else %>
                     <p class="rsvp-page__status">You'll sign in with Hack Club when you hit RSVP.</p>
                 <% end %>
-                <%= button_to 'RSVP here', rsvp_path, method: :post, class: 'rsvp-page__cta' %>
+                <%= button_to 'RSVP here', rsvp_path, method: :post, class: 'rsvp-page__cta matcha' %>
             <% end %>
         </div>
     </div>
