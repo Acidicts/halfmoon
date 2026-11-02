@@ -21,6 +21,25 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "shared" %>
     <%= stylesheet_link_tag "layouts/home" %>
+
+    <%# Halfmoon Opengraph :P %>
+    <% page_title       = content_for?(:title)          ? content_for(:title)          : "Half Moon" %>
+    <% page_description = content_for?(:og_description) ? content_for(:og_description) : "A ysws where you make a project and swap with a chosen person and continue on their project, and get prizes for it!!!" %>
+    <% page_image       = content_for?(:og_image)       ? content_for(:og_image)       : image_url("opengraph/half-moon.png") %>
+
+    <meta name="description" content="<%= page_description %>">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Half Moon">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:title" content="<%= page_title %>">
+    <meta property="og:description" content="<%= page_description %>">
+    <meta property="og:image" content="<%= page_image %>">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= page_title %>">
+    <meta name="twitter:description" content="<%= page_description %>">
+    <meta name="twitter:image" content="<%= page_image %>">
   </head>
 
   <body>
