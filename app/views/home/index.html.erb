@@ -35,62 +35,17 @@
   </div>
 </div>
 
-<div class="rsvp-here matcha">
-  <div class="moon-icon moon-full"></div>
-  <h2>Ready to rebuild the moon?</h2>
-  <p>Grab a buddy, make something, and RSVP to support this ysws.</p>
-  <%= button_to 'RSVP here', rsvp_path, method: :post, class: 'rsvp-here__cta matcha' %>
-</div>
+<div class="viewport-container">
+  <div class="rsvp-here matcha">
+    <div class="moon-icon moon-full"></div>
+    <h2>Ready to rebuild the moon?</h2>
+    <p>Grab a buddy, make something, and RSVP to support this ysws.</p>
+    <%= button_to 'RSVP here', rsvp_path, method: :post, class: 'rsvp-here__cta matcha' %>
+  </div>
 
-<div class="questions matcha">
-  <details class="question-div" name="faq">
-    <summary class="question">Who can join?</summary>
-    <div class="answer-wrap">
-      <p class="answer">
-        Anyone who's 13-18! It's a Hack Club You Ship, We Ship, so the usual YSWS eligibility rules apply. No experience needed: if you can open a code editor, you're qualified. If you're 19 or older, anyone you may know who fits the age range.
-      </p>
-    </div>
-  </details>
-  <details class="question-div" name="faq">
-    <summary class="question">Is this running?</summary>
-    <div class="answer-wrap">
-      <p class="answer">
-        No as this is currently a draft ysws yet to be sponsored by hackclub hq.
-      </p>
-    </div>
-  </details>
-  <details class="question-div" name="faq">
-    <summary class="question">Can I use AI?</summary>
-    <div class="answer-wrap">
-      <p class="answer">
-        Only 30% can be AI and you must be able to explain all major parts of your project.
-      </p>
-    </div>
-  </details>
-  <details class="question-div" name="faq">
-    <summary class="question">What if I don't have a friend to do it with?</summary>
-    <div class="answer-wrap">
-      <p class="answer">
-        You can find someone here on hackclub to do it with.
-      </p>
-    </div>
-  </details>
-  <details class="question-div" name="faq">
-    <summary class="question">What if my friend quits midway through?</summary>
-    <div class="answer-wrap">
-      <p class="answer">
-        You can find a new person or get given a random project from us.
-      </p>
-    </div>
-  </details>
-  <details class="question-div" name="faq">
-    <summary class="question">Does the project have to be open source</summary>
-    <div class="answer-wrap">
-      <p class="answer">
-        Yes as this is a requirment for hackclub YSWS.
-      </p>
-    </div>
-  </details>
+  <div class="questions matcha">
+    <%= render "home/faq" %>
+  </div>
 </div>
 
 <script>

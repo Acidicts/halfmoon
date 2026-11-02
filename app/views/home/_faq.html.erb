@@ -1,0 +1,11 @@
+<% faq_questions = HomeController::FAQ_QUESTIONS %>
+<% faq_questions.each do |key, answer| %>
+    <details class="question-div" name="faq">
+        <summary class="question"><%= key %></summary>
+        <div class="answer-wrap">
+            <p class="answer">
+                <%= answer %>
+            </p>
+        </div>
+    </details>
+<% end %>

@@ -6,6 +6,10 @@
     --rsvp-text       : #20253f;
 }
 
+body {
+    background-color: var(--dark);
+}
+
 .banner {
     position: relative;
     width: 100%;
@@ -65,9 +69,14 @@
     transform: rotate(75deg) translateX(-1rem) translateY(-30px);
 }
 
+.viewport-container {
+    position: relative;
+    height: 100vh;
+    padding-bottom: 1rem;
+}
+
 .description {
     background-color: var(--dark);
-
 }
 
 .description .steps {
@@ -243,6 +252,19 @@
     border-bottom: 1px solid var(--dark-highlight);
     border-radius: 0;
     color: var(--moon);
+    interpolate-size: allow-keywords;
+}
+
+.question-div::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: 
+        block-size .25s ease,
+        content-visibility .25s ease allow-discrete;
+}
+
+.question-div[open]::details-content {
+    block-size: auto;
 }
 
 .question-div .question {
@@ -281,25 +303,59 @@
     transform: rotate(45deg);
 }
 
-.question-div .answer-wrap {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows .25s ease;
-}
-
-.question-div[open] .answer-wrap {
-    grid-template-rows: 1fr;
-}
-
 .question-div .answer-wrap .answer {
     overflow: hidden;
-    margin: 0;
+    margin: 0 1rem 1rem 1rem;
     font-size: .92rem;
     line-height: 1.6;
     color: var(--paragraph-text);
     font-family: system-ui;
 }
 
-.question-div[open] .answer-wrap .answer {
-    padding: 0 .25rem .9rem;
+@media(max-device-width: 600px) {
+    .title {
+        display: flex;
+        flex-direction: column;
+        font-size: 72px
+    }
+
+    .halfmoon-banner-title-half__last-o__first::before {
+        transform: rotate(-105deg) translateX(0.75rem);
+    }
+
+    .halfmoon-banner-title-half__last-o__first::after {
+        border-width: 3px;
+        transform: rotate(75deg) translateX(-0.75rem) translateY(-24px);
+    }
+
+    .description {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .description .steps {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        max-width: 30rem;
+        margin: 0 auto;
+        padding: 0.5rem;
+        box-sizing: border-box;
+    }
+
+    .description .step {
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .description .step .moon-icon {
+        margin-inline: auto;
+    }
 }
