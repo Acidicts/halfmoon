@@ -24,10 +24,12 @@ Rails.application.configure do
   # config.asset_host = "http://assets.example.com"
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  # Configurable because unconditional assumption can make Rails treat requests as HTTPS
-  # even when forwarded scheme/origin information is inconsistent, which breaks CSRF
-  # origin checks behind some proxy setups.
-  config.assume_ssl = ActiveModel::Type::Boolean.new.cast(ENV.fetch("ASSUME_SSL", "true"))
+  # Default off: unconditional assumption can treat requests as HTTPS even when
+  # forwarded scheme/origin information is inconsistent, which breaks Secure session
+  # cookies and CSRF checks behind some proxy setups. Prefer `X-Forwarded-Proto`
+  # from a trusted proxy with `force_ssl`; set ASSUME_SSL=true only when the proxy
+  # always terminates TLS and does not forward a trustworthy scheme header.
+  config.assume_ssl = ActiveModel::Type::Boolean.new.cast(ENV.fetch("ASSUME_SSL", "false"))
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
