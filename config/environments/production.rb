@@ -24,13 +24,22 @@ Rails.application.configure do
   # config.asset_host = "http://assets.example.com"
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  config.assume_ssl = true
+  # Configurable because unconditional assumption can make Rails treat requests as HTTPS
+  # even when forwarded scheme/origin information is inconsistent, which breaks CSRF
+  # origin checks behind some proxy setups.
+  config.assume_ssl = ActiveModel::Type::Boolean.new.cast(ENV.fetch("ASSUME_SSL", "true"))
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+
+  # Behind SSL-terminating proxies the browser's Origin header can be reported as http
+  # while Rails reconstructs an https base URL, causing false InvalidAuthenticityToken
+  # errors on legitimate form posts. The CSRF token is still verified.
+  config.action_controller.forgery_protection_origin_check =
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch("FORGERY_PROTECTION_ORIGIN_CHECK", "false"))
 
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [ :request_id ]
@@ -74,6 +83,11 @@ Rails.application.configure do
   extra_hosts = Halfmoon.hosts_from_env("ALLOWED_HOSTS", "ALLOWED_HOST")
   allowed = ([ app_host ] + extra_hosts).compact.map(&:to_s).map(&:strip).reject(&:empty?).uniq
   config.hosts = allowed.flat_map { |host| [ host, ".#{host}" ] }
+
+  config.action_controller.default_url_options = {
+    host: app_host,
+    protocol: "https"
+  }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

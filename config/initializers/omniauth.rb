@@ -2,6 +2,18 @@
 
 require Rails.root.join("lib/omniauth/strategies/hackclub")
 
+# Build callback URLs from the configured public origin, not the request Host/
+# X-Forwarded-Host header. This avoids OmniAuth's host-forgery warning and keeps
+# redirects stable behind SSL-terminating proxies where the app may see an
+# internal host or scheme.
+app_host = Halfmoon.app_host(default: (Rails.env.development? || Rails.env.test? ? "localhost" : "halfmoon.bing-bong.uk"))
+default_url = Rails.env.development? || Rails.env.test? ? "http://localhost:3000" : "https://#{app_host}"
+full_host = ENV["APP_URL"].presence || ENV["OMNIAUTH_FULL_HOST"].presence || default_url
+OmniAuth.config.full_host = full_host
+OmniAuth.config.allowed_request_methods = [ :post ]
+OmniAuth.config.logger = Rails.logger
+OmniAuth.config.on_failure = proc { |env| SessionsController.action(:failure).call(env) }
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   # No callback_url override: the strategy derives the callback from APP_URL, which is the
   # origin registered on the Hack Club app. An override here was being applied verbatim and
@@ -20,5 +32,3 @@ end
 # omniauth-rails_csrf_protection railtie verifies the Rails token issued via
 # csrf_meta_tags / form_authenticity_token (CVE-2015-9284 mitigation).
 OmniAuth.config.allowed_request_methods = [ :post ]
-OmniAuth.config.logger = Rails.logger
-OmniAuth.config.on_failure = proc { |env| SessionsController.action(:failure).call(env) }

@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get "rsvp/thanks", to: "home#rsvp_thanks", as: :rsvp_thanks
   post "rsvp", to: "home#create_rsvp"
 
+  # Browsers commonly request /favicon.ico directly.
+  get "/favicon.ico", to: redirect("/icon.png")
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions
   get "up" => "rails/health#show", as: :rails_health_check
 
