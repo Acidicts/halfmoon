@@ -4,9 +4,25 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
+  INACTIVITY_TIMEOUT = 3.days
+
+  before_action :expire_session_on_inactivity
+
   helper_method :current_user, :authenticated?
 
   private
+
+  def expire_session_on_inactivity
+    return unless session[:user_id]
+
+    last_seen = session[:last_seen_at]
+    if last_seen.present? && Time.current.to_i - last_seen.to_i > INACTIVITY_TIMEOUT.to_i
+      reset_session
+      return
+    end
+
+    session[:last_seen_at] = Time.current.to_i
+  end
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]

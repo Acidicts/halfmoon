@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
 
     reset_session
     session[:user_id] = user.id
+    session[:last_seen_at] = Time.current.to_i
 
     # Resume the action the user attempted before being asked to sign in.
     # Browsers can't replay a POST via redirect, so we perform the whitelisted

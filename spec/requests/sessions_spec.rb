@@ -41,4 +41,29 @@ RSpec.describe "Sessions", type: :request do
       expect(response).to redirect_to(rsvp_thanks_path)
     end
   end
+
+  describe "inactivity expiration" do
+    include ActiveSupport::Testing::TimeHelpers
+
+    it "expires the session after 3 days of inactivity" do
+      mock_hackclub_auth
+      get "/auth/hackclub/callback"
+      expect(session[:user_id]).to be_present
+
+      travel_to 3.days.from_now + 1.second do
+        get "/rsvp"
+        expect(session[:user_id]).to be_nil
+      end
+    end
+
+    it "keeps the session active when used within 3 days" do
+      mock_hackclub_auth
+      get "/auth/hackclub/callback"
+
+      travel_to 2.days.from_now do
+        get "/rsvp"
+        expect(session[:user_id]).to be_present
+      end
+    end
+  end
 end
