@@ -52,6 +52,10 @@ body {
     width: .64em;
     height: .32em;
     background-color: var(--moon);
+    background-image:
+        radial-gradient(circle 0.1em at 33% 40%, var(--moon-outline) 0 70%, transparent 100%),
+        radial-gradient(circle 0.067em at 63% 60%, var(--moon-outline) 0 70%, transparent 100%),
+        radial-gradient(circle 0.042em at 45% 80%, var(--moon-outline) 0 70%, transparent 100%);
     border: var(--moon-outline) 2px solid;
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     transform: rotate(-105deg) translateX(1rem);
