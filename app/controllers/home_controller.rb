@@ -14,7 +14,8 @@ class HomeController < ApplicationController
     "What if my friend quits midway through?": "You can find a new person or get given a random project from us.",
     "Does the project have to be open source": "Yes as this is a requirment for hackclub YSWS.",
     "I don't have any friends": "Umm, well I'll be your friend except I won't finish you project :P but you complete mine",
-    "I don't know how to code": "You won't need to have a friend if you don't want to jump in immediately, instead you can pickup a starter project which you continue off of one of my projects!"
+    "I don't know how to code": "You won't need to have a friend if you don't want to jump in immediately, instead you can pickup a starter project which you continue off of one of my projects!",
+    "What happened to the moon?": "We don't know and need you to find out, after the explosion of stardance heidi and orpheus journeyed on their rocket searching for a new place to stay. But what they found was a shattered moon, with one lone space sattion with the hackclub logo painted onto it..."
   }.freeze
 
   def index; end

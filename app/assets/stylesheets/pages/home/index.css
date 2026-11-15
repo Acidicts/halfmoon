@@ -8,6 +8,7 @@
 
 body {
     background-color: var(--dark);
+    cursor: url(.)
 }
 
 .banner {
@@ -89,7 +90,8 @@ body {
 .description .step {
     padding: 3rem;
     background-color: var(--dark);
-    border: 4px solid var(--dark-highlight);
+    border: 4px solid color-mix(in srgb, var(--moon-outline) 20%, transparent);
+    box-shadow: var(--moon-outline) 0 0 10px;
     margin: 1rem;
     border-radius: 32px;
     
@@ -134,7 +136,7 @@ body {
 
 .rsvp-here {
     padding: 4rem 1rem;
-    background-color: var(--dark-highlight);
+    background-image: linear-gradient(transparent 10%, var(--dark-highlight) 70%, transparent );
     border-top: 4px solid var(--dark);
     text-align: center;
     color: var(--moon);
@@ -237,10 +239,13 @@ body {
 .questions {
     padding: 2.5rem 1rem;
     background-color: var(--dark);
-    border-top: 4px solid var(--dark-highlight);
     display: grid;
     gap: 0;
     justify-items: center;
+}
+
+.faq-title {
+    color: var(--moon);
 }
 
 .question-div {
@@ -276,11 +281,17 @@ body {
     padding: .85rem .25rem;
     font-size: 1.05rem;
     font-weight: normal;
-    color: var(--moon);
+    color: color-mix(in srgb, var(--moon) 60%, transparent);
     cursor: pointer;
     list-style: none;
+
+    transition: color 0.3s;
 }
 
+.question-div .question:hover {
+    color: var(--moon);
+}
+    
 .question-div .question::-webkit-details-marker {
     display: none;
 }

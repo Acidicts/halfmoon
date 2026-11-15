@@ -1,4 +1,6 @@
 <% faq_questions = HomeController::FAQ_QUESTIONS %>
+
+<h1 class="faq-title">The moon has questions but I am sure you do too</h1>
 <% faq_questions.each do |key, answer| %>
     <details class="question-div" name="faq">
         <summary class="question"><%= key %></summary>
