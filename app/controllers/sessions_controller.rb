@@ -3,6 +3,8 @@
 class SessionsController < ApplicationController
   include SlackInvitations
 
+  SESSION_EXPIRE_AFTER = 7.days
+
   # The login button POSTs to /auth/hackclub (OmniAuth request phase, verified
   # against the Rails CSRF token); the IdP redirects back to #create.
   def new; end
