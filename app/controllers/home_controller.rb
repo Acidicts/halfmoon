@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   layout "home"
   include SlackInvitations
 
-  before_action :require_authentication, only: %i[rsvps_count create_rsvp]
+  before_action :require_authentication, only: %i[create_rsvp]
 
   FAQ_QUESTIONS = {
     "Who can join?": "Anyone who's 13-18! It's a Hack Club You Ship, We Ship, so the usual YSWS eligibility rules apply. No experience needed: if you can open a code editor, you're qualified. If you're 19 or older, anyone you may know who fits the age range.",
